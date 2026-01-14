@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8" />
+    <title>Edit <%= food.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Edit <%= food.name %></h1>
+
+    <form
+      action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT"
+      method="POST"
+    >
+      <label for="name">Food Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        value="<%= food.name %>"
+        required
+      />
+
+      <button type="submit" class="update-button">Update</button>
+    </form>
+
+    <div class="button-container">
+      <form action="/users/<%= user._id %>/foods" style="display: inline">
+        <button type="submit" class="back-button">Back to Pantry</button>
+      </form>
+    </div>
+  </body>
+</html>

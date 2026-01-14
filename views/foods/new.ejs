@@ -8,10 +8,17 @@
     <link rel="stylesheet" href="/css/style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <title>Add New Item</title>
   </head>
   <body>
-    <%- include('./partials/_navbar.ejs') %>
-    <h1>Welcome to CookBook</h1>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Add a New Item</h1>
+
+    <form action="/users/<%= user._id %>/foods" method="POST">
+      <label for="name">Food Name:</label>
+      <input type="text" name="name" id="name" required />
+      <button type="submit" class="add-item">Add Item</button>
+    </form>
   </body>
 </html>

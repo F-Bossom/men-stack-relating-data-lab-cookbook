@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pantry</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>My Pantry</h1>
+
+    <div class="button-container">
+      <form
+        action="/users/<%= user._id %>/foods/new"
+        method="GET"
+        style="display: inline"
+      >
+        <button type="submit" class="add-button">Add New Item</button>
+      </form>
+    </div>
+
+    <ul>
+      <% if (pantry.length === 0) { %>
+      <li>There are no items in this pantry.</li>
+      <% } else { %> <% pantry.forEach(item => { %>
+      <li>
+        <%= item.name %>
+
+        <form
+          action="/users/<%= user._id %>/foods/<%= item._id %>/edit"
+          method="GET"
+          style="display: inline"
+        >
+          <button class="edit-button" type="submit">Edit</button>
+        </form>
+
+        <form
+          action="/users/<%= user._id %>/foods/<%= item._id %>?_method=DELETE"
+          method="POST"
+          style="display: inline"
+        >
+          <button class="delete-button" type="submit">Delete</button>
+        </form>
+      </li>
+      <% }) %> <% } %>
+    </ul>
+  </body>
+</html>
